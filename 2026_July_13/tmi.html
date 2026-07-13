@@ -85,34 +85,215 @@
   <!-- 메인 TMI 정보 기재 캔버스 -->
   <main class="mt-20 flex-grow">
     <section class="max-w-6xl mx-auto px-6 py-12 lg:py-20">
-      <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-center max-w-3xl mx-auto mb-10 lg:mb-14">
         <span class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent block mb-2" data-i18n="tmi-sub">Beyond Data Engineering</span>
         <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight" data-i18n="tmi-title">TMI & Trivia</h2>
+        <p class="mt-4 text-gray-500 dark:text-gray-400 leading-relaxed" data-i18n="tmi-intro">Outside of data engineering, I collect new perspectives through travel and build consistency through training.</p>
       </div>
-      
-      <!-- 커스터마이징 가능한 모듈러 그리드 와이어프레임 박스 -->
-      <div class="bg-white dark:bg-zinc-900 border border-dashed border-gray-300 dark:border-zinc-800 rounded-3xl p-8 sm:p-12 md:p-20 text-center flex flex-col items-center justify-center min-h-[450px]">
-        <div class="w-16 h-16 bg-brand-light dark:bg-brand-darkLight rounded-2xl flex items-center justify-center text-brand-primary dark:text-brand-accent mb-6">
-          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-            <line x1="12" y1="17" x2="12.01" y2="17"></line>
-          </svg>
-        </div>
-        <h3 class="text-2xl font-extrabold mb-4" data-i18n="tmi-placeholder-h">TMI Space of Daewon</h3>
-        <p class="text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed mb-10" data-i18n="tmi-placeholder-p">
-          Stay tuned for interesting facts, background stories, technical hobbies, running and exercise habits, and non-work-related details that make Kim Daewon a unique colleague to work with.
-        </p>
 
-        <!-- 반응형 스켈레톤 그리드 카드 -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
-          <div class="bg-gray-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-gray-200 dark:border-zinc-800 text-left">
-            <div class="h-4 bg-brand-accent/20 rounded-full w-1/3 mb-3"></div>
-            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-5/6"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article class="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-brand-accent/30" data-modal-card="travel-modal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="travel-modal">
+          <div class="relative overflow-hidden">
+            <img src="photo/trip_dubai2.jpg" alt="Travel collection preview" class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute left-6 right-6 bottom-5 flex items-end justify-between gap-4 text-white">
+              <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-white/75" data-i18n="travel-label">Travel Log</span>
+                <h3 class="text-2xl font-extrabold mt-1" data-i18n="travel-card-title">Travel</h3>
+              </div>
+              <span class="text-3xl" aria-hidden="true">✈️</span>
+            </div>
           </div>
-          <div class="bg-gray-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-gray-200 dark:border-zinc-800 text-left">
-            <div class="h-4 bg-brand-accent/20 rounded-full w-1/3 mb-3"></div>
-            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-5/6"></div>
+          <div class="p-6 sm:p-8">
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400 mb-6" data-i18n="travel-card-desc">A chronological journey through the UAE, Switzerland, Italy, and the United States.</p>
+            <div class="flex items-center gap-2 mb-6" aria-label="Travel countries">
+              <img src="https://cdn.britannica.com/82/5782-050-8A763A9A/Flag-United-Arab-Emirates.jpg" alt="United Arab Emirates flag" loading="lazy" referrerpolicy="no-referrer" class="w-10 h-7 object-cover rounded-md border border-gray-200 dark:border-zinc-700 shadow-sm">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyrnRCsbQOcyZJUh6ZlY3PjGL_Cp-21RD6HOgPCSOzKA&amp;s=10" alt="Switzerland flag" loading="lazy" referrerpolicy="no-referrer" class="w-10 h-7 object-contain bg-white rounded-md border border-gray-200 dark:border-zinc-700 shadow-sm">
+              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTTqyiqvbuDX_wLHyTM72SL3CVHXhaaGgh9i-kNPStaA&amp;s=10" alt="Italy flag" loading="lazy" referrerpolicy="no-referrer" class="w-10 h-7 object-cover rounded-md border border-gray-200 dark:border-zinc-700 shadow-sm">
+              <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/3840px-Flag_of_the_United_States.svg.png" alt="United States flag" loading="lazy" referrerpolicy="no-referrer" class="w-10 h-7 object-cover rounded-md border border-gray-200 dark:border-zinc-700 shadow-sm">
+            </div>
+            <button type="button" data-modal-open="travel-modal" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary hover:bg-brand-hover text-white px-5 py-3 text-sm font-bold transition-colors">
+              <span data-i18n="view-details">View Details</span><span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
+
+        <article class="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-sm hover:-translate-y-1 hover:shadow-xl transition-all duration-300 cursor-pointer focus:outline-none focus:ring-4 focus:ring-brand-accent/30" data-modal-card="fitness-modal" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="fitness-modal">
+          <div class="relative overflow-hidden">
+            <img src="photo/exercise1.png" alt="Training collection preview" class="w-full aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent"></div>
+            <div class="absolute left-6 right-6 bottom-5 flex items-end justify-between gap-4 text-white">
+              <div>
+                <span class="text-xs font-bold tracking-widest uppercase text-white/75" data-i18n="fitness-label">Training Log</span>
+                <h3 class="text-2xl font-extrabold mt-1" data-i18n="fitness-card-title">Training</h3>
+              </div>
+              <span class="text-3xl" aria-hidden="true">🥊</span>
+            </div>
+          </div>
+          <div class="p-6 sm:p-8">
+            <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400 mb-6" data-i18n="fitness-card-desc">Boxing and fitness records that show focus, endurance, and steady progress.</p>
+            <button type="button" data-modal-open="fitness-modal" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-brand-primary hover:bg-brand-hover text-white px-5 py-3 text-sm font-bold transition-colors">
+              <span data-i18n="view-details">View Details</span><span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- 시간순 여행 기록 -->
+      <div id="travel-modal" class="fixed inset-0 z-[70] hidden p-3 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="travel-modal-title">
+        <button type="button" class="absolute inset-0 w-full h-full bg-zinc-950/70 backdrop-blur-sm cursor-default" data-modal-close aria-label="Close travel details"></button>
+        <div class="relative max-w-6xl mx-auto max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-3rem)] overflow-y-auto overscroll-contain bg-[#F8F7FC] dark:bg-[#121212] rounded-3xl shadow-2xl">
+          <div class="sticky top-0 z-20 flex items-center justify-between gap-4 px-5 sm:px-8 py-4 bg-[#F8F7FC]/95 dark:bg-[#121212]/95 backdrop-blur-md border-b border-gray-200 dark:border-zinc-800">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl" aria-hidden="true">✈️</span>
+              <h3 id="travel-modal-title" class="text-lg sm:text-xl font-extrabold" data-i18n="travel-modal-title">Travel Details</h3>
+            </div>
+            <button type="button" data-modal-close class="w-10 h-10 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:text-brand-primary dark:hover:text-brand-accent transition-colors" aria-label="Close travel details">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="p-5 sm:p-8 lg:p-10">
+        <div class="flex items-end justify-between gap-6 mb-8">
+          <div>
+            <span class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent" data-i18n="travel-label">Travel Log</span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold mt-1" data-i18n="travel-title">Four countries, three chapters</h3>
+          </div>
+          <span class="hidden sm:block text-sm text-gray-400" data-i18n="travel-order">In chronological order</span>
+        </div>
+
+        <div class="relative space-y-8 before:absolute before:left-[19px] sm:before:left-[23px] before:top-5 before:bottom-5 before:w-px before:bg-brand-accent/30">
+          <!-- 01 UAE -->
+          <article class="relative pl-14 sm:pl-16">
+            <div class="absolute left-0 top-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-primary text-white flex items-center justify-center text-sm font-extrabold ring-8 ring-[#F8F7FC] dark:ring-[#121212]">01</div>
+            <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-sm">
+              <div class="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <img src="https://cdn.britannica.com/82/5782-050-8A763A9A/Flag-United-Arab-Emirates.jpg" alt="United Arab Emirates flag" loading="lazy" referrerpolicy="no-referrer" class="w-16 sm:w-20 h-11 sm:h-14 object-cover rounded-xl border border-gray-200 dark:border-zinc-700 shadow-sm">
+                  <div>
+                    <p class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent" data-i18n="uae-country">United Arab Emirates</p>
+                    <h4 class="text-xl sm:text-2xl font-extrabold" data-i18n="uae-cities">Dubai · Abu Dhabi</h4>
+                  </div>
+                </div>
+                <div class="sm:max-w-sm sm:text-right">
+                  <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="uae-desc">The first chapter, where futuristic skylines meet the quiet scale of the desert.</p>
+                  <p class="mt-2 text-xs font-bold text-brand-primary dark:text-brand-accent"><span aria-hidden="true">↔</span> <span data-i18n="gallery-scroll">Swipe or scroll through photos</span></p>
+                </div>
+              </div>
+              <div class="flex gap-3 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-smooth bg-gray-100 dark:bg-zinc-800 p-3 cursor-grab select-none" data-drag-scroll role="region" aria-label="UAE travel photo gallery" tabindex="0">
+                <img src="photo/trip_dubai1.jpg" alt="Desert landscape in the UAE" loading="lazy" class="shrink-0 snap-start w-[86%] sm:w-[58%] lg:w-[38%] aspect-[4/3] object-cover rounded-2xl">
+                <img src="photo/trip_dubai2.jpg" alt="Travel memory from Dubai and Abu Dhabi" loading="lazy" class="shrink-0 snap-start w-[86%] sm:w-[58%] lg:w-[38%] aspect-[4/3] object-cover rounded-2xl">
+                <img src="photo/trip_dubai3.jpg" alt="City view from the UAE trip" loading="lazy" class="shrink-0 snap-start w-[86%] sm:w-[58%] lg:w-[38%] aspect-[4/3] object-cover rounded-2xl">
+              </div>
+            </div>
+          </article>
+
+          <!-- 02 Switzerland & Italy -->
+          <article class="relative pl-14 sm:pl-16">
+            <div class="absolute left-0 top-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-primary text-white flex items-center justify-center text-sm font-extrabold ring-8 ring-[#F8F7FC] dark:ring-[#121212]">02</div>
+            <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+              <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+                <div>
+                  <div class="flex items-center gap-2 mb-3">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyrnRCsbQOcyZJUh6ZlY3PjGL_Cp-21RD6HOgPCSOzKA&amp;s=10" alt="Switzerland flag" loading="lazy" referrerpolicy="no-referrer" class="w-16 h-11 object-contain bg-white rounded-xl border border-gray-200 dark:border-zinc-700 shadow-sm">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTTqyiqvbuDX_wLHyTM72SL3CVHXhaaGgh9i-kNPStaA&amp;s=10" alt="Italy flag" loading="lazy" referrerpolicy="no-referrer" class="w-16 h-11 object-cover rounded-xl border border-gray-200 dark:border-zinc-700 shadow-sm">
+                  </div>
+                  <p class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent" data-i18n="europe-country">Switzerland · Italy</p>
+                  <h4 class="text-xl sm:text-2xl font-extrabold mt-1" data-i18n="europe-title">Across the Alps</h4>
+                  <p class="mt-3 text-sm text-gray-500 dark:text-gray-400 max-w-xl" data-i18n="europe-desc">A single European chapter connecting Swiss landscapes with the streets, history, and food of Italy.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-3 min-w-full lg:min-w-[320px]">
+                  <div class="rounded-2xl bg-gradient-to-br from-red-50 to-white dark:from-red-950/30 dark:to-zinc-900 border border-red-100 dark:border-red-900/30 p-5 text-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyrnRCsbQOcyZJUh6ZlY3PjGL_Cp-21RD6HOgPCSOzKA&amp;s=10" alt="Switzerland flag" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-10 object-contain bg-white rounded-lg border border-red-100 mx-auto shadow-sm">
+                    <p class="font-bold mt-2" data-i18n="switzerland">Switzerland</p>
+                  </div>
+                  <div class="rounded-2xl bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/30 dark:to-zinc-900 border border-emerald-100 dark:border-emerald-900/30 p-5 text-center">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTTqyiqvbuDX_wLHyTM72SL3CVHXhaaGgh9i-kNPStaA&amp;s=10" alt="Italy flag" loading="lazy" referrerpolicy="no-referrer" class="w-14 h-10 object-cover rounded-lg border border-emerald-100 mx-auto shadow-sm">
+                    <p class="font-bold mt-2" data-i18n="italy">Italy</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- 03 USA -->
+          <article class="relative pl-14 sm:pl-16">
+            <div class="absolute left-0 top-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-brand-primary text-white flex items-center justify-center text-sm font-extrabold ring-8 ring-[#F8F7FC] dark:ring-[#121212]">03</div>
+            <div class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-sm">
+              <div class="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex items-center gap-4">
+                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a4/Flag_of_the_United_States.svg/3840px-Flag_of_the_United_States.svg.png" alt="United States flag" loading="lazy" referrerpolicy="no-referrer" class="w-16 sm:w-20 h-11 sm:h-14 object-cover rounded-xl border border-gray-200 dark:border-zinc-700 shadow-sm">
+                  <div>
+                    <p class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent" data-i18n="usa-country">United States</p>
+                    <h4 class="text-xl sm:text-2xl font-extrabold" data-i18n="usa-cities">New York · Washington, D.C. · Boston</h4>
+                  </div>
+                </div>
+                <div class="sm:max-w-sm sm:text-right">
+                  <p class="text-sm text-gray-500 dark:text-gray-400" data-i18n="usa-desc">Three East Coast cities, each with a completely different pace, character, and story.</p>
+                  <p class="mt-2 text-xs font-bold text-brand-primary dark:text-brand-accent"><span aria-hidden="true">↔</span> <span data-i18n="gallery-scroll">Swipe or scroll through photos</span></p>
+                </div>
+              </div>
+              <div class="flex gap-3 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-smooth bg-gray-100 dark:bg-zinc-800 p-3 cursor-grab select-none" data-drag-scroll role="region" aria-label="United States travel photo gallery" tabindex="0">
+                <img src="photo/trip_ny1.jpg" alt="Night view of New York City" loading="lazy" class="shrink-0 snap-start w-[82%] sm:w-[48%] lg:w-[32%] aspect-square object-cover rounded-2xl">
+                <img src="photo/trip_ny2.jpg" alt="Travel memory from the United States" loading="lazy" class="shrink-0 snap-start w-[82%] sm:w-[48%] lg:w-[32%] aspect-square object-cover rounded-2xl">
+                <img src="photo/trip_ny3.jpg" alt="New York, Washington D.C., and Boston trip" loading="lazy" class="shrink-0 snap-start w-[82%] sm:w-[48%] lg:w-[32%] aspect-square object-cover rounded-2xl">
+                <img src="photo/trip_ny4.jpg" alt="East Coast city view" loading="lazy" class="shrink-0 snap-start w-[82%] sm:w-[48%] lg:w-[32%] aspect-square object-cover rounded-2xl">
+                <img src="photo/trip_ny5.jpg" alt="United States travel scene" loading="lazy" class="shrink-0 snap-start w-[82%] sm:w-[48%] lg:w-[32%] aspect-square object-cover rounded-2xl">
+                <img src="photo/trip_ny6.jpg" alt="A moment from the East Coast journey" loading="lazy" class="shrink-0 snap-start w-[82%] sm:w-[48%] lg:w-[32%] aspect-square object-cover rounded-2xl">
+              </div>
+            </div>
+          </article>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 운동 기록 -->
+      <div id="fitness-modal" class="fixed inset-0 z-[70] hidden p-3 sm:p-6" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="fitness-modal-title">
+        <button type="button" class="absolute inset-0 w-full h-full bg-zinc-950/70 backdrop-blur-sm cursor-default" data-modal-close aria-label="Close training details"></button>
+        <div class="relative max-w-5xl mx-auto max-h-[calc(100vh-1.5rem)] sm:max-h-[calc(100vh-3rem)] overflow-y-auto overscroll-contain bg-[#F8F7FC] dark:bg-[#121212] rounded-3xl shadow-2xl">
+          <div class="sticky top-0 z-20 flex items-center justify-between gap-4 px-5 sm:px-8 py-4 bg-[#F8F7FC]/95 dark:bg-[#121212]/95 backdrop-blur-md border-b border-gray-200 dark:border-zinc-800">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl" aria-hidden="true">🥊</span>
+              <h3 id="fitness-modal-title" class="text-lg sm:text-xl font-extrabold" data-i18n="fitness-modal-title">Training Details</h3>
+            </div>
+            <button type="button" data-modal-close class="w-10 h-10 rounded-xl bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 flex items-center justify-center hover:text-brand-primary dark:hover:text-brand-accent transition-colors" aria-label="Close training details">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <div class="p-5 sm:p-8 lg:p-10">
+        <div class="mb-8">
+          <span class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent" data-i18n="fitness-label">Training Log</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold mt-1" data-i18n="fitness-title">Consistency outside the keyboard</h3>
+          <p class="mt-3 text-gray-500 dark:text-gray-400 max-w-2xl" data-i18n="fitness-desc">Training is where I practice focus, endurance, and measurable progress.</p>
+        </div>
+
+        <div class="flex gap-5 overflow-x-auto overscroll-x-contain snap-x snap-mandatory scroll-smooth pb-3 cursor-grab select-none" data-drag-scroll role="region" aria-label="Training photo gallery" tabindex="0">
+          <article class="group shrink-0 snap-start w-[88%] sm:w-[68%] lg:w-[48%] bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-sm">
+            <div class="overflow-hidden">
+              <img src="photo/exercise1.png" alt="Boxing training in the ring" loading="lazy" class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition-transform duration-500">
+            </div>
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="w-10 h-10 rounded-xl bg-brand-light dark:bg-brand-darkLight flex items-center justify-center text-xl" aria-hidden="true">🥊</span>
+                <h4 class="text-xl font-extrabold" data-i18n="boxing-title">Boxing</h4>
+              </div>
+              <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400" data-i18n="boxing-desc">Footwork, timing, and composure under pressure—boxing trains both physical stamina and mental focus.</p>
+            </div>
+          </article>
+
+          <article class="group shrink-0 snap-start w-[88%] sm:w-[68%] lg:w-[48%] bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl overflow-hidden shadow-sm">
+            <div class="overflow-hidden bg-gray-100 dark:bg-zinc-800">
+              <img src="photo/exercise2.jpg" alt="Body composition record from a fitness journey" loading="lazy" class="w-full aspect-[16/10] object-cover group-hover:scale-[1.02] transition-transform duration-500">
+            </div>
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="w-10 h-10 rounded-xl bg-brand-light dark:bg-brand-darkLight flex items-center justify-center text-xl" aria-hidden="true">📈</span>
+                <h4 class="text-xl font-extrabold" data-i18n="fitness-record-title">Fitness Progress</h4>
+              </div>
+              <p class="text-sm leading-relaxed text-gray-500 dark:text-gray-400" data-i18n="fitness-record-desc">I keep records because steady improvement becomes clearer when effort is measured over time.</p>
+            </div>
+          </article>
+        </div>
           </div>
         </div>
       </div>
@@ -142,9 +323,39 @@
         "nav-ssafy": "Career & Activities",
         "nav-tmi": "TMI Daewon Kim",
         "tmi-sub": "Beyond Data Engineering",
-        "tmi-title": "TMI",
-        "tmi-placeholder-h": "TMI Space of Daewon",
-        "tmi-placeholder-p": "Stay tuned for interesting facts, background stories, technical hobbies, running and exercise habits, and non-work-related details that make Kim Daewon a unique colleague to work with.",
+        "tmi-title": "TMI & Trivia",
+        "tmi-intro": "Outside of data engineering, I collect new perspectives through travel and build consistency through training.",
+        "quick-travel": "Travel",
+        "quick-fitness": "Training",
+        "travel-card-title": "Travel",
+        "travel-card-desc": "A chronological journey through the UAE, Switzerland, Italy, and the United States.",
+        "fitness-card-title": "Training",
+        "fitness-card-desc": "Boxing and fitness records that show focus, endurance, and steady progress.",
+        "view-details": "View Details",
+        "travel-modal-title": "Travel Details",
+        "fitness-modal-title": "Training Details",
+        "travel-label": "Travel Log",
+        "travel-title": "Four countries, three chapters",
+        "travel-order": "In chronological order",
+        "gallery-scroll": "Swipe or scroll through photos",
+        "uae-country": "United Arab Emirates",
+        "uae-cities": "Dubai · Abu Dhabi",
+        "uae-desc": "The first chapter, where futuristic skylines meet the quiet scale of the desert.",
+        "europe-country": "Switzerland · Italy",
+        "europe-title": "Across the Alps",
+        "europe-desc": "A single European chapter connecting Swiss landscapes with the streets, history, and food of Italy.",
+        "switzerland": "Switzerland",
+        "italy": "Italy",
+        "usa-country": "United States",
+        "usa-cities": "New York · Washington, D.C. · Boston",
+        "usa-desc": "Three East Coast cities, each with a completely different pace, character, and story.",
+        "fitness-label": "Training Log",
+        "fitness-title": "Consistency outside the keyboard",
+        "fitness-desc": "Training is where I practice focus, endurance, and measurable progress.",
+        "boxing-title": "Boxing",
+        "boxing-desc": "Footwork, timing, and composure under pressure—boxing trains both physical stamina and mental focus.",
+        "fitness-record-title": "Fitness Progress",
+        "fitness-record-desc": "I keep records because steady improvement becomes clearer when effort is measured over time.",
         "toast-dark-mode": "Dark mode activated.",
         "toast-light-mode": "Light mode activated."
       },
@@ -154,8 +365,38 @@
         "nav-tmi": "TMI 김대원",
         "tmi-sub": "기술을 넘어선 가치",
         "tmi-title": "TMI 및 소소한 특징",
-        "tmi-placeholder-h": "대원 TMI 보관함",
-        "tmi-placeholder-p": "업무 이외의 일상, 관심 분야, 취미 활동(운동, 독서, 러닝 습관) 등 인간적인 면모를 어필할 수 있는 개성 넘치는 소소한 이야기들로 찾아뵙겠습니다.",
+        "tmi-intro": "데이터 엔지니어링 밖에서는 여행으로 새로운 시선을 얻고, 운동으로 꾸준함을 만들어 갑니다.",
+        "quick-travel": "여행",
+        "quick-fitness": "운동",
+        "travel-card-title": "여행",
+        "travel-card-desc": "UAE, 스위스, 이탈리아, 미국으로 이어지는 시간순 여행 기록입니다.",
+        "fitness-card-title": "운동",
+        "fitness-card-desc": "집중력과 지구력, 꾸준한 변화를 보여주는 복싱과 피트니스 기록입니다.",
+        "view-details": "자세히 보기",
+        "travel-modal-title": "여행 상세",
+        "fitness-modal-title": "운동 상세",
+        "travel-label": "여행 기록",
+        "travel-title": "4개 국가, 3개의 여행 챕터",
+        "travel-order": "시간순 기록",
+        "gallery-scroll": "밀거나 스크롤해서 사진 보기",
+        "uae-country": "아랍에미리트",
+        "uae-cities": "두바이 · 아부다비",
+        "uae-desc": "미래적인 도시의 스카이라인과 고요하고 광활한 사막을 함께 만난 첫 번째 여행입니다.",
+        "europe-country": "스위스 · 이탈리아",
+        "europe-title": "알프스를 가로지르며",
+        "europe-desc": "스위스의 자연에서 이탈리아의 거리, 역사, 음식까지 이어진 하나의 유럽 여행입니다.",
+        "switzerland": "스위스",
+        "italy": "이탈리아",
+        "usa-country": "미국",
+        "usa-cities": "뉴욕 · 워싱턴 D.C. · 보스턴",
+        "usa-desc": "서로 다른 속도와 분위기, 이야기를 가진 미국 동부의 세 도시를 여행했습니다.",
+        "fitness-label": "운동 기록",
+        "fitness-title": "키보드 밖에서 쌓는 꾸준함",
+        "fitness-desc": "운동을 통해 집중력과 지구력, 그리고 눈에 보이는 성장을 꾸준히 만들어 갑니다.",
+        "boxing-title": "복싱",
+        "boxing-desc": "풋워크와 타이밍, 압박 속 침착함을 연습하며 체력과 집중력을 함께 단련합니다.",
+        "fitness-record-title": "피트니스 변화 기록",
+        "fitness-record-desc": "노력을 기록하면 시간에 따라 쌓이는 꾸준한 변화를 더 분명하게 확인할 수 있습니다.",
         "toast-dark-mode": "다크 모드가 활성화되었습니다.",
         "toast-light-mode": "라이트 모드가 활성화되었습니다."
       }
@@ -258,6 +499,112 @@
         toast.classList.remove('opacity-100', 'translate-y-0');
       }, 2500);
     }
+
+    // 여행·운동 상세 모달
+    let activeModal = null;
+    let modalTrigger = null;
+
+    function openDetailsModal(modalId, trigger) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+
+      activeModal = modal;
+      modalTrigger = trigger;
+      modal.classList.remove('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('overflow-hidden');
+
+      const closeButton = modal.querySelector('.relative [data-modal-close]');
+      if (closeButton) requestAnimationFrame(() => closeButton.focus());
+    }
+
+    function closeDetailsModal(modal = activeModal) {
+      if (!modal) return;
+
+      modal.classList.add('hidden');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overflow-hidden');
+      activeModal = null;
+
+      if (modalTrigger) modalTrigger.focus();
+      modalTrigger = null;
+    }
+
+    document.querySelectorAll('[data-modal-open]').forEach(button => {
+      button.addEventListener('click', () => {
+        openDetailsModal(button.dataset.modalOpen, button);
+      });
+    });
+
+    document.querySelectorAll('[data-modal-card]').forEach(card => {
+      card.addEventListener('click', event => {
+        if (event.target.closest('button, a')) return;
+        openDetailsModal(card.dataset.modalCard, card);
+      });
+
+      card.addEventListener('keydown', event => {
+        if (event.target !== card || !['Enter', ' '].includes(event.key)) return;
+        event.preventDefault();
+        openDetailsModal(card.dataset.modalCard, card);
+      });
+    });
+
+    document.querySelectorAll('[data-modal-close]').forEach(button => {
+      button.addEventListener('click', () => {
+        closeDetailsModal(button.closest('[role="dialog"]'));
+      });
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && activeModal) closeDetailsModal();
+    });
+
+    // 데스크톱 사진 갤러리: 마우스로 잡아 끌어서 스크롤
+    document.querySelectorAll('[data-drag-scroll]').forEach(gallery => {
+      let activePointer = null;
+      let startX = 0;
+      let startScrollLeft = 0;
+
+      gallery.querySelectorAll('img').forEach(image => {
+        image.draggable = false;
+        image.addEventListener('dragstart', event => event.preventDefault());
+      });
+
+      gallery.addEventListener('pointerdown', event => {
+        if (event.pointerType !== 'mouse' || event.button !== 0) return;
+
+        activePointer = event.pointerId;
+        startX = event.clientX;
+        startScrollLeft = gallery.scrollLeft;
+        gallery.setPointerCapture(event.pointerId);
+        gallery.classList.remove('cursor-grab');
+        gallery.classList.add('cursor-grabbing');
+        gallery.style.scrollBehavior = 'auto';
+        gallery.style.scrollSnapType = 'none';
+        event.preventDefault();
+      });
+
+      gallery.addEventListener('pointermove', event => {
+        if (event.pointerId !== activePointer) return;
+        gallery.scrollLeft = startScrollLeft - (event.clientX - startX);
+        event.preventDefault();
+      });
+
+      const finishDrag = event => {
+        if (event.pointerId !== activePointer) return;
+        if (gallery.hasPointerCapture(event.pointerId)) {
+          gallery.releasePointerCapture(event.pointerId);
+        }
+        activePointer = null;
+        gallery.classList.remove('cursor-grabbing');
+        gallery.classList.add('cursor-grab');
+        gallery.style.removeProperty('scroll-behavior');
+        gallery.style.removeProperty('scroll-snap-type');
+      };
+
+      gallery.addEventListener('pointerup', finishDrag);
+      gallery.addEventListener('pointercancel', finishDrag);
+    });
 
     window.onload = function () {
       changeLanguage(currentLang);
