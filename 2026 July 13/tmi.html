@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kim Daewon | TMI</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#7C3AED',
+              hover: '#6D28D9',
+              light: '#F5F3FF',
+              darkLight: '#2A1E4E',
+              accent: '#A78BFA'
+            },
+            softDark: {
+              bg: '#121212',
+              card: '#1E1E1E',
+              border: '#2D2D2D'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- 글로벌 통합 CSS 스타일 시트 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#F8F7FC] text-gray-800 dark:bg-[#121212] dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- 일관성 있는 상단 헤더 영역 -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#F8F7FC]/80 dark:bg-[#121212]/80 backdrop-blur-md border-b border-gray-200 dark:border-zinc-800 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+      <!-- 로고 -->
+      <a href="index.html" class="text-xl font-extrabold tracking-tight text-brand-primary dark:text-brand-accent flex items-center gap-1.5 shrink-0">
+        KIM DAEWON<div class="w-2 h-2 rounded-full bg-brand-accent"></div>
+      </a>
+      
+      <!-- MPA 내비게이션 바 링크 (현재 페이지: TMI & Trivia 활성화) -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link-underline relative py-2 font-semibold text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200" data-i18n="nav-about">About me</a>
+        <a href="ssafy.html" class="nav-link-underline relative py-2 font-semibold text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200" data-i18n="nav-ssafy">SSAFY Daewon Kim</a>
+        <a href="tmi.html" class="nav-link-underline active relative py-2 font-semibold text-brand-primary dark:text-brand-accent transition-colors duration-200" data-i18n="nav-tmi">TMI Daewon Kim</a>
+      </nav>
+      
+      <!-- 유틸리티 영역 (다국어 및 라이트/다크모드 스위치) -->
+      <div class="flex items-center gap-3">
+        <!-- 다국어 랭귀지 스위치 -->
+        <div class="flex bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 p-1 rounded-xl shadow-sm">
+          <button id="btn-en" onclick="changeLanguage('en')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">EN</button>
+          <button id="btn-ko" onclick="changeLanguage('ko')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">KO</button>
+        </div>
+        
+        <!-- 다크 모드 토글 스위치 -->
+        <button id="theme-btn" aria-label="Toggle Theme" class="w-10 h-10 rounded-xl flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:scale-105 shadow-sm text-gray-800 dark:text-gray-200 transition-all duration-200">
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- 모바일 서랍 메뉴 토글 햄버거 버튼 -->
+        <button id="menu-toggle-btn" aria-label="Open Navigation Drawer" class="md:hidden w-10 h-10 rounded-xl flex flex-col justify-center items-center gap-1.5 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-gray-50">
+          <span class="w-5 h-0.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-transform"></span>
+          <span class="w-5 h-0.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-opacity"></span>
+          <span class="w-5 h-0.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-transform"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 모바일 드로워 패널 -->
+    <div id="mobile-nav-drawer" class="md:hidden hidden w-full bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 px-6 py-4 flex flex-col gap-4 shadow-lg transition-all duration-300">
+      <a href="index.html" class="mobile-nav-link py-2.5 font-bold text-gray-500 dark:text-gray-400 hover:text-brand-primary" data-i18n="nav-about">About me</a>
+      <a href="ssafy.html" class="mobile-nav-link py-2.5 font-bold text-gray-500 dark:text-gray-400 hover:text-brand-primary" data-i18n="nav-ssafy">SSAFY Daewon Kim</a>
+      <a href="tmi.html" class="mobile-nav-link py-2.5 font-bold text-brand-primary dark:text-brand-accent" data-i18n="nav-tmi">TMI Daewon Kim</a>
+    </div>
+  </header>
+
+  <!-- 메인 TMI 정보 기재 캔버스 -->
+  <main class="mt-20 flex-grow">
+    <section class="max-w-6xl mx-auto px-6 py-12 lg:py-20">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent block mb-2" data-i18n="tmi-sub">Beyond Data Engineering</span>
+        <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight" data-i18n="tmi-title">TMI & Trivia</h2>
+      </div>
+      
+      <!-- 커스터마이징 가능한 모듈러 그리드 와이어프레임 박스 -->
+      <div class="bg-white dark:bg-zinc-900 border border-dashed border-gray-300 dark:border-zinc-800 rounded-3xl p-8 sm:p-12 md:p-20 text-center flex flex-col items-center justify-center min-h-[450px]">
+        <div class="w-16 h-16 bg-brand-light dark:bg-brand-darkLight rounded-2xl flex items-center justify-center text-brand-primary dark:text-brand-accent mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-4" data-i18n="tmi-placeholder-h">TMI Space of Daewon</h3>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed mb-10" data-i18n="tmi-placeholder-p">
+          Stay tuned for interesting facts, background stories, technical hobbies, running and exercise habits, and non-work-related details that make Kim Daewon a unique colleague to work with.
+        </p>
+
+        <!-- 반응형 스켈레톤 그리드 카드 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
+          <div class="bg-gray-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-gray-200 dark:border-zinc-800 text-left">
+            <div class="h-4 bg-brand-accent/20 rounded-full w-1/3 mb-3"></div>
+            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-5/6"></div>
+          </div>
+          <div class="bg-gray-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-gray-200 dark:border-zinc-800 text-left">
+            <div class="h-4 bg-brand-accent/20 rounded-full w-1/3 mb-3"></div>
+            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-5/6"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <footer class="bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 py-10 transition-colors duration-300 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 text-center space-y-2">
+      <p class="text-gray-500 dark:text-gray-400 text-sm">&copy; 2026 Kim Daewon. All rights reserved.</p>
+      <p class="text-xs text-gray-400 dark:text-zinc-500">Designed & Developed by Dae-won Kim</p>
+    </div>
+  </footer>
+
+  <!-- 알림 토스트 UI -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 translate-y-[120px] bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-3.5 rounded-2xl shadow-xl flex items-center gap-2.5 font-semibold text-sm z-50 opacity-0 pointer-events-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-accent dark:text-brand-primary">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">Success</span>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        "nav-about": "About me",
+        "nav-ssafy": "SSAFY Daewon Kim",
+        "nav-tmi": "TMI Daewon Kim",
+        "tmi-sub": "Beyond Data Engineering",
+        "tmi-title": "TMI",
+        "tmi-placeholder-h": "TMI Space of Daewon",
+        "tmi-placeholder-p": "Stay tuned for interesting facts, background stories, technical hobbies, running and exercise habits, and non-work-related details that make Kim Daewon a unique colleague to work with.",
+        "toast-dark-mode": "Dark mode activated.",
+        "toast-light-mode": "Light mode activated."
+      },
+      ko: {
+        "nav-about": "소개 (About me)",
+        "nav-ssafy": "싸피 김대원 (SSAFY)",
+        "nav-tmi": "TMI 김대원",
+        "tmi-sub": "기술을 넘어선 가치",
+        "tmi-title": "TMI 및 소소한 특징",
+        "tmi-placeholder-h": "대원 TMI 보관함",
+        "tmi-placeholder-p": "업무 이외의 일상, 관심 분야, 취미 활동(운동, 독서, 러닝 습관) 등 인간적인 면모를 어필할 수 있는 개성 넘치는 소소한 이야기들로 찾아뵙겠습니다.",
+        "toast-dark-mode": "다크 모드가 활성화되었습니다.",
+        "toast-light-mode": "라이트 모드가 활성화되었습니다."
+      }
+    };
+
+    let currentLang = localStorage.getItem('daewon-portfolio-lang') || 'en';
+    const btnKo = document.getElementById('btn-ko');
+    const btnEn = document.getElementById('btn-en');
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('daewon-portfolio-lang', lang);
+      
+      const isKo = lang === 'ko';
+      btnKo.classList.toggle('bg-brand-primary', isKo);
+      btnKo.classList.toggle('text-white', isKo);
+      btnKo.classList.toggle('dark:text-zinc-900', isKo);
+      
+      btnEn.classList.toggle('bg-brand-primary', !isKo);
+      btnEn.classList.toggle('text-white', !isKo);
+      btnEn.classList.toggle('dark:text-zinc-900', !isKo);
+
+      document.documentElement.setAttribute('lang', lang);
+
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+    }
+
+    // 테마 설정 (시스템 선호도 및 보존 쿠키 로드)
+    const themeBtn = document.getElementById('theme-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+
+    const applyTheme = (isDark) => {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        htmlEl.setAttribute('data-theme', 'dark');
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+      } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.setAttribute('data-theme', 'light');
+        themeIcon.innerHTML = `
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        `;
+      }
+    };
+
+    const savedTheme = localStorage.getItem('daewon-portfolio-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
+
+    themeBtn.addEventListener('click', () => {
+      const currentlyDark = htmlEl.classList.contains('dark');
+      applyTheme(!currentlyDark);
+      localStorage.setItem('daewon-portfolio-theme', !currentlyDark ? 'dark' : 'light');
+      showToast(!currentlyDark ? translations[currentLang]["toast-dark-mode"] : translations[currentLang]["toast-light-mode"]);
+    });
+
+    // 모바일 햄버거 메뉴 서랍 동작
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+
+    menuToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileNavDrawer.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menuToggleBtn.contains(e.target) && !mobileNavDrawer.contains(e.target)) {
+        mobileNavDrawer.classList.add('hidden');
+      }
+    });
+
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-msg');
+    let toastTimeout;
+
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[120px]');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[120px]');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2500);
+    }
+
+    window.onload = function () {
+      changeLanguage(currentLang);
+    };
+  </script>
+</body>
+</html>
