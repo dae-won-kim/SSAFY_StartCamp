@@ -12,14 +12,18 @@
     localStorage.setItem(versionKey, stateVersion);
   }
 
-  const isTmiPage = () => decodeURIComponent(window.location.pathname).toLowerCase().endsWith('/tmi.html');
+  const isTmiPage = () => /\/tmi(?:\.html)?\/?$/.test(
+    decodeURIComponent(window.location.pathname).toLowerCase()
+  );
 
   function isDisabled() {
     return localStorage.getItem(storageKey) === 'true';
   }
 
   function updateTmiLinks(disabled) {
-    document.querySelectorAll('a[href="tmi.html"], a[data-tmi-href]').forEach(link => {
+    document.querySelectorAll(
+      'a[href="tmi.html"], a[href="tmi"], a[href="/tmi"], a[data-tmi-href]'
+    ).forEach(link => {
       if (disabled) {
         link.dataset.tmiHref = link.getAttribute('href') || 'tmi.html';
         link.removeAttribute('href');
