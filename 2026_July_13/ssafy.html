@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kim Daewon | SSAFY Journey</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ['class', '[data-theme="dark"]'],
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              primary: '#7C3AED',
+              hover: '#6D28D9',
+              light: '#F5F3FF',
+              darkLight: '#2A1E4E',
+              accent: '#A78BFA'
+            },
+            softDark: {
+              bg: '#121212',
+              card: '#1E1E1E',
+              border: '#2D2D2D'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- 글로벌 통합 CSS 스타일 시트 연결 -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#F8F7FC] text-gray-800 dark:bg-[#121212] dark:text-gray-100 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- 일관성 있는 상단 헤더 영역 -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-[#F8F7FC]/80 dark:bg-[#121212]/80 backdrop-blur-md border-b border-gray-200 dark:border-zinc-800 transition-all duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-20 flex justify-between items-center">
+      <!-- 로고 -->
+      <a href="index.html" class="text-xl font-extrabold tracking-tight text-brand-primary dark:text-brand-accent flex items-center gap-1.5 shrink-0">
+        KIM DAEWON<div class="w-2 h-2 rounded-full bg-brand-accent"></div>
+      </a>
+      
+      <!-- MPA 내비게이션 바 링크 (현재 페이지: SSAFY Journey 활성화) -->
+      <nav class="hidden md:flex items-center gap-8">
+        <a href="index.html" class="nav-link-underline relative py-2 font-semibold text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200" data-i18n="nav-about">About me</a>
+        <a href="ssafy.html" class="nav-link-underline active relative py-2 font-semibold text-brand-primary dark:text-brand-accent transition-colors duration-200" data-i18n="nav-ssafy">SSAFY Daewon Kim</a>
+        <a href="tmi.html" class="nav-link-underline relative py-2 font-semibold text-gray-500 hover:text-brand-primary dark:text-gray-400 dark:hover:text-brand-accent transition-colors duration-200" data-i18n="nav-tmi">TMI Daewon Kim</a>
+      </nav>
+      
+      <!-- 유틸리티 영역 (다국어 및 라이트/다크모드 스위치) -->
+      <div class="flex items-center gap-3">
+        <!-- 다국어 랭귀지 스위치 -->
+        <div class="flex bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 p-1 rounded-xl shadow-sm">
+          <button id="btn-en" onclick="changeLanguage('en')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">EN</button>
+          <button id="btn-ko" onclick="changeLanguage('ko')" class="px-2.5 py-1 text-xs font-bold rounded-lg transition-colors text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white">KO</button>
+        </div>
+        
+        <!-- 다크 모드 토글 스위치 -->
+        <button id="theme-btn" aria-label="Toggle Theme" class="w-10 h-10 rounded-xl flex items-center justify-center bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:scale-105 shadow-sm text-gray-800 dark:text-gray-200 transition-all duration-200">
+          <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- 모바일 서랍 메뉴 토글 햄버거 버튼 -->
+        <button id="menu-toggle-btn" aria-label="Open Navigation Drawer" class="md:hidden w-10 h-10 rounded-xl flex flex-col justify-center items-center gap-1.5 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 hover:bg-gray-50">
+          <span class="w-5 h-0.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-transform"></span>
+          <span class="w-5 h-0.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-opacity"></span>
+          <span class="w-5 h-0.5 bg-gray-800 dark:bg-gray-200 rounded-full transition-transform"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- 모바일 드로워 패널 -->
+    <div id="mobile-nav-drawer" class="md:hidden hidden w-full bg-white dark:bg-zinc-900 border-b border-gray-200 dark:border-zinc-800 px-6 py-4 flex flex-col gap-4 shadow-lg transition-all duration-300">
+      <a href="index.html" class="mobile-nav-link py-2.5 font-bold text-gray-500 dark:text-gray-400 hover:text-brand-primary" data-i18n="nav-about">About me</a>
+      <a href="ssafy.html" class="mobile-nav-link py-2.5 font-bold text-brand-primary dark:text-brand-accent" data-i18n="nav-ssafy">SSAFY Daewon Kim</a>
+      <a href="tmi.html" class="mobile-nav-link py-2.5 font-bold text-gray-500 dark:text-gray-400 hover:text-brand-primary" data-i18n="nav-tmi">TMI Daewon Kim</a>
+    </div>
+  </header>
+
+  <!-- 메인 교육 & 프로젝트 스토리 공간 -->
+  <main class="mt-20 flex-grow">
+    <section class="max-w-6xl mx-auto px-6 py-12 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold tracking-widest uppercase text-brand-primary dark:text-brand-accent block mb-2" data-i18n="career-sub">Experience Archive</span>
+        <h2 class="text-3xl lg:text-4xl font-extrabold tracking-tight" data-i18n="career-title">Career &amp; Activities</h2>
+        <p class="mt-4 text-gray-500 dark:text-gray-400" data-i18n="career-intro">Explore my professional experience and upcoming activities.</p>
+      </div>
+      
+      <!-- 커스터마이징 가능한 모듈러 그리드 와이어프레임 박스 -->
+      <div class="hidden bg-white dark:bg-zinc-900 border border-dashed border-gray-300 dark:border-zinc-800 rounded-3xl p-8 sm:p-12 md:p-20 text-center flex-col items-center justify-center min-h-[450px]">
+        <div class="w-16 h-16 bg-brand-light dark:bg-brand-darkLight rounded-2xl flex items-center justify-center text-brand-primary dark:text-brand-accent mb-6">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+          </svg>
+        </div>
+        <h3 class="text-2xl font-extrabold mb-4" data-i18n="ssafy-placeholder-h">Future SSAFY Content Space</h3>
+        <p class="text-gray-500 dark:text-gray-400 max-w-lg leading-relaxed mb-10" data-i18n="ssafy-placeholder-p">
+          This area will soon be updated with custom highlights, algorithms solved, structured dataset pipelines, and architectural systems built during the SSAFY 16th Data Track program.
+        </p>
+        
+        <!-- 대원 님이 실제 작성 시 가이드라인이 되어줄 반응형 서브 스켈레톤 그리드 카드 -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-3xl">
+          <div class="bg-gray-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-gray-200 dark:border-zinc-800 text-left">
+            <div class="h-4 bg-brand-primary/20 rounded-full w-2/5 mb-3"></div>
+            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-4/5 mb-2.5"></div>
+            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-3/5"></div>
+          </div>
+          <div class="bg-gray-50 dark:bg-zinc-800/40 p-6 rounded-2xl border border-gray-200 dark:border-zinc-800 text-left">
+            <div class="h-4 bg-brand-primary/20 rounded-full w-2/5 mb-3"></div>
+            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-4/5 mb-2.5"></div>
+            <div class="h-4 bg-gray-200 dark:bg-zinc-800 rounded-full w-3/5"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mb-10">
+        <article class="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-7 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="h-12 max-w-[150px] mb-6 flex items-center"><img src="https://www.etri.re.kr/images/eng/sub3/ci_img01.png" alt="ETRI logo" class="max-w-full max-h-full object-contain object-left" loading="lazy"></div>
+          <p class="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-accent mb-2" data-i18n="etri-period">2025.07 – 2025.08</p>
+          <h3 class="text-xl font-extrabold mb-2" data-i18n="etri-name">ETRI</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 min-h-[44px]" data-i18n="etri-lab">Warrior Capability Enhancement Research Laboratory</p>
+          <button type="button" id="etri-detail-btn" onclick="toggleEtriDetails()" aria-expanded="false" aria-controls="etri-details" class="mt-6 inline-flex items-center gap-2 font-bold text-sm text-brand-primary dark:text-brand-accent hover:gap-3 transition-all"><span data-i18n="view-details">View details</span><svg id="etri-detail-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><path d="m9 18 6-6-6-6"/></svg></button>
+        </article>
+        <article class="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-7 shadow-sm hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+          <div class="h-12 max-w-[150px] mb-6 flex items-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMyTJFBl0Gmcg6ArM--R-aBFkG20vvnLlQ916DyzBU4A&amp;s" alt="Hongik University logo" class="max-w-full max-h-full object-contain object-left" loading="lazy"></div>
+          <p class="text-xs font-bold tracking-widest text-brand-primary dark:text-brand-accent mb-2" data-i18n="hongik-period">2025.01 – 2025.06</p>
+          <h3 class="text-xl font-extrabold mb-2" data-i18n="hongik-name">Hongik University</h3>
+          <p class="text-sm text-gray-500 dark:text-gray-400 min-h-[44px]" data-i18n="hongik-program">Metaverse Convergence SW Academy · Trainee</p>
+          <button type="button" id="hongik-detail-btn" onclick="toggleHongikDetails()" aria-expanded="false" aria-controls="hongik-details" class="mt-6 inline-flex items-center gap-2 font-bold text-sm text-brand-primary dark:text-brand-accent hover:gap-3 transition-all"><span data-i18n="view-details">View details</span><svg id="hongik-detail-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform"><path d="m9 18 6-6-6-6"/></svg></button>
+        </article>
+        <article class="bg-white/60 dark:bg-zinc-900/60 border border-dashed border-gray-300 dark:border-zinc-700 rounded-3xl p-7 flex flex-col justify-between min-h-[230px]"><div class="w-12 h-12 rounded-2xl bg-gray-100 dark:bg-zinc-800 flex items-center justify-center text-gray-400"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></div><div><p class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-2">Next Activity</p><h3 class="text-xl font-extrabold text-gray-400 dark:text-zinc-500">Coming Soon</h3></div></article>
+      </div>
+
+      <div id="etri-details" class="hidden space-y-8 scroll-mt-28">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 pb-2"><div><p class="text-sm font-bold text-brand-primary dark:text-brand-accent" data-i18n="etri-period">2025.07 – 2025.08</p><h3 class="text-2xl sm:text-3xl font-extrabold mt-1" data-i18n="etri-detail-title">ETRI · Warrior Capability Enhancement Research Laboratory</h3></div><button type="button" id="etri-close-btn" onclick="setEtriDetails(false); etriDetailBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });" class="text-sm font-bold text-gray-500 hover:text-brand-primary dark:hover:text-brand-accent" data-i18n="close-details">Close details</button></div>
+        <article class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:justify-between gap-5 mb-7"><div><span class="text-sm font-extrabold text-brand-primary dark:text-brand-accent">01</span><h3 class="mt-1 text-2xl font-extrabold" data-i18n="p1-title">Motion Capture Data Visualization, Preprocessing &amp; Labeling Software</h3><p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="solo">Solo development · 2 months</p></div><div class="flex gap-3" aria-label="Technology stack"><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="Unity"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unity/unity-original.svg" alt="Unity" class="w-full h-full object-contain"></div><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="C#"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#" class="w-full h-full object-contain"></div></div></div>
+          <div class="grid lg:grid-cols-[1fr_.45fr] gap-6"><section class="rounded-2xl border border-blue-200 bg-blue-50/60 p-5 dark:border-blue-900 dark:bg-blue-950/20"><h4 class="text-blue-700 dark:text-blue-300 font-extrabold mb-4" data-i18n="responsibilities">Key Responsibilities</h4><ul class="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 list-disc pl-5"><li data-i18n="p1-r1">Built folder-wide BVH batch loading and automatic one-to-one mapping to same-named JSON label files.</li><li data-i18n="p1-r2">Created a file-list UI that dynamically switches BVH motion data and JSON metadata, replacing the manual single-file workflow.</li><li data-i18n="p1-r3">Mapped BVH hierarchies to Unity character bones for real-time retargeting and visualization, with continuous and frame-by-frame playback.</li><li data-i18n="p1-r4">Integrated Winterdust for BVH parsing and editing, enabling precise frame-level extraction and removal of unnecessary data.</li><li data-i18n="p1-r5">Implemented JSON metadata editing and creation with automatic motion-name and frame-length updates plus editable class and description fields.</li></ul></section><section class="rounded-2xl border border-red-200 bg-red-50/60 p-5 dark:border-red-900 dark:bg-red-950/20"><h4 class="text-red-700 dark:text-red-300 font-extrabold mb-4" data-i18n="achievements">Key Achievements</h4><ul class="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 list-disc pl-5"><li data-i18n="p1-a1">Separated motion recording and validation into parallel workflows, improving processing speed.</li><li data-i18n="p1-a2">Automated repetitive file replacement and loading, reducing time spent on manual operations.</li></ul></section></div>
+        </article>
+
+        <article class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:justify-between gap-5 mb-7"><div><span class="text-sm font-extrabold text-brand-primary dark:text-brand-accent">02</span><h3 class="mt-1 text-2xl font-extrabold" data-i18n="p2-title">Scenario-Based VR Simulator Feature Development</h3><p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="team">2-person team + external partner · 1 month</p></div><div class="flex gap-3" aria-label="Technology stack"><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="Unreal Engine 5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine 5" class="w-full h-full object-contain"></div><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="C++"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" class="w-full h-full object-contain"></div><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="GitHub"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="GitHub" class="w-full h-full object-contain"></div></div></div>
+          <section class="rounded-2xl border border-blue-200 bg-blue-50/60 p-5 dark:border-blue-900 dark:bg-blue-950/20"><h4 class="text-blue-700 dark:text-blue-300 font-extrabold mb-4" data-i18n="responsibilities">Key Responsibilities</h4><ul class="grid md:grid-cols-2 gap-x-8 gap-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 list-disc pl-5"><li data-i18n="p2-r1">Applied Queue-based object pooling to reduce runtime allocation costs and added null-reference handling for stability.</li><li data-i18n="p2-r2">Built flexible Spline movement paths and randomized route assignment to generate varied movement patterns and improve immersion.</li></ul></section>
+        </article>
+
+        <article class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:justify-between gap-5 mb-7"><div><span class="text-sm font-extrabold text-brand-primary dark:text-brand-accent">03</span><h3 class="mt-1 text-2xl font-extrabold" data-i18n="p3-title">Motion Capture Dataset Construction</h3><p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="two-months">2 months</p></div><div class="flex gap-3" aria-label="Capture equipment"><div class="w-14 h-14 rounded-2xl border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 flex items-center justify-center text-[10px] font-black text-brand-primary" title="OptiTrack">OPT<br>TRACK</div><div class="w-14 h-14 rounded-2xl border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 flex items-center justify-center text-xs font-black text-brand-primary" title="Xsens">XSENS</div><div class="w-14 h-14 rounded-2xl border border-gray-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 flex items-center justify-center text-[9px] font-black text-brand-primary" title="StretchSense">STRETCH<br>SENSE</div></div></div>
+          <div class="grid md:grid-cols-2 gap-6"><section class="rounded-2xl border border-blue-200 bg-blue-50/60 p-5 dark:border-blue-900 dark:bg-blue-950/20"><h4 class="text-blue-700 dark:text-blue-300 font-extrabold mb-4" data-i18n="responsibilities">Key Responsibilities</h4><ul class="space-y-3 text-sm leading-relaxed text-gray-700 dark:text-gray-300 list-disc pl-5"><li data-i18n="p3-r1">Personally wore and operated the motion capture equipment.</li><li data-i18n="p3-r2">Captured project-specific movements that could not be replaced by general-purpose datasets such as AMASS.</li></ul></section><section class="rounded-2xl border border-red-200 bg-red-50/60 p-5 dark:border-red-900 dark:bg-red-950/20"><h4 class="text-red-700 dark:text-red-300 font-extrabold mb-4" data-i18n="achievements">Key Achievements</h4><p class="text-lg font-extrabold text-red-700 dark:text-red-300" data-i18n="p3-a1">Secured a dataset of more than 30 project-specific motions.</p></section></div>
+        </article>
+      </div>
+
+      <div id="hongik-details" class="hidden space-y-8 scroll-mt-28">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 pb-2"><div><p class="text-sm font-bold text-brand-primary dark:text-brand-accent" data-i18n="hongik-period">2025.01 – 2025.06</p><h3 class="text-2xl sm:text-3xl font-extrabold mt-1" data-i18n="hongik-detail-title">Hongik University Metaverse Convergence SW Academy</h3><p class="mt-2 text-gray-500 dark:text-gray-400" data-i18n="hongik-role">Trainee · Deputy Team Lead · 6-person team</p></div><button type="button" id="hongik-close-btn" onclick="setHongikDetails(false); hongikDetailBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });" class="text-sm font-bold text-gray-500 hover:text-brand-primary dark:hover:text-brand-accent" data-i18n="close-details">Close details</button></div>
+
+        <article class="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div class="flex flex-col lg:flex-row lg:justify-between gap-5 mb-7"><div><span class="text-sm font-extrabold text-brand-primary dark:text-brand-accent" data-i18n="hongik-overview-label">VR Career Experience Simulator</span><h3 class="mt-1 text-2xl font-extrabold" data-i18n="hongik-project">Metaverse-Based VR Content Planning &amp; Development</h3><p class="mt-2 text-sm text-gray-500 dark:text-gray-400" data-i18n="hongik-team">Deputy team lead · 6 developers (4 client, 2 graphics)</p></div><div class="flex gap-3" aria-label="Technology stack"><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="Unreal Engine 5"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine 5" class="w-full h-full object-contain"></div><div class="w-14 h-14 rounded-2xl border border-gray-200 bg-white p-3" title="C++"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" alt="C++" class="w-full h-full object-contain"></div><a href="https://www.diversion.io/" target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-2xl border border-gray-200 bg-white flex items-center justify-center text-[10px] font-black text-[#6C47FF]" title="Diversion">DIV</a></div></div>
+
+          <div class="grid lg:grid-cols-[1fr_.45fr] gap-6">
+            <section class="rounded-2xl border border-blue-200 bg-blue-50/60 p-5 dark:border-blue-900 dark:bg-blue-950/20"><h4 class="text-blue-700 dark:text-blue-300 font-extrabold mb-5" data-i18n="activities">Key Activities</h4><div class="space-y-6 text-sm leading-relaxed text-gray-700 dark:text-gray-300"><div><h5 class="font-extrabold mb-2" data-i18n="hongik-design-title">Design</h5><ul class="space-y-2 list-disc pl-5"><li data-i18n="hongik-design-1">Designed a component-based architecture using flowcharts and UML.</li><li data-i18n="hongik-design-2">Designed the user-experience flow through level structure and object placement.</li></ul></div><div><h5 class="font-extrabold mb-2" data-i18n="hongik-lead-title">Deputy Team Lead</h5><ul class="space-y-2 list-disc pl-5"><li data-i18n="hongik-lead-1">Introduced Agile practices, a Notion Kanban board, milestones, and short Scrum meetings to improve visibility and schedule adherence.</li><li data-i18n="hongik-lead-2">Reduced meeting time from 30 minutes to 5–10 minutes.</li><li data-i18n="hongik-lead-3">Interviewed an overseas industry professional by email and applied the findings to the simulator design.</li></ul></div><div><h5 class="font-extrabold mb-2" data-i18n="hongik-client-title">Client Development</h5><ul class="space-y-2 list-disc pl-5"><li data-i18n="hongik-client-1">Implemented the complete level, from the vocational training zone to the overall experience flow.</li><li data-i18n="hongik-client-2">Built an asynchronous sequence that restricts player movement on area entry and restores it when the presentation ends.</li><li data-i18n="hongik-client-3">Designed an extensible single-item class that dynamically loads appearances through name-based runtime branching.</li><li data-i18n="hongik-client-4">Created a real-time collision visualization debugging tool to prevent placement and collision errors.</li></ul></div></div></section>
+            <section class="rounded-2xl border border-red-200 bg-red-50/60 p-5 dark:border-red-900 dark:bg-red-950/20"><h4 class="text-red-700 dark:text-red-300 font-extrabold mb-5" data-i18n="achievements">Key Achievements</h4><ul class="space-y-4 text-sm leading-relaxed text-gray-700 dark:text-gray-300 list-disc pl-5"><li class="font-bold" data-i18n="hongik-achievement-1">Submitted to and exhibited at the 2025 Global Game Challenge (GGC).</li><li><a href="https://selab.hongik.ac.kr/selab/data/papers/2025_ICONI_chaeyunseo.pdf" target="_blank" rel="noopener noreferrer" class="font-bold text-red-700 dark:text-red-300 underline underline-offset-4 hover:opacity-70" data-i18n="hongik-achievement-2">Development of unique career exploration educational content using metaverse-based VR — ICONI 2025</a></li></ul></section>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <!-- 공통 푸터 -->
+  <footer class="bg-white dark:bg-zinc-900 border-t border-gray-200 dark:border-zinc-800 py-10 transition-colors duration-300 mt-auto">
+    <div class="max-w-6xl mx-auto px-6 text-center space-y-2">
+      <p class="text-gray-500 dark:text-gray-400 text-sm">&copy; 2026 Kim Daewon. All rights reserved.</p>
+      <p class="text-xs text-gray-400 dark:text-zinc-500">Designed & Developed by Dae-won Kim</p>
+    </div>
+  </footer>
+
+  <!-- 알림 토스트 UI -->
+  <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 translate-y-[120px] bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 px-6 py-3.5 rounded-2xl shadow-xl flex items-center gap-2.5 font-semibold text-sm z-50 opacity-0 pointer-events-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-brand-accent dark:text-brand-primary">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span id="toast-msg">Success</span>
+  </div>
+
+  <script>
+    const translations = {
+      en: {
+        "nav-about": "About me",
+        "nav-ssafy": "SSAFY Daewon Kim",
+        "nav-tmi": "TMI Daewon Kim",
+        "ssafy-sub": "SSAFY 16th Data Track Record",
+        "ssafy-title": "SSAFY Journey",
+        "ssafy-placeholder-h": "Future SSAFY Content Space",
+        "ssafy-placeholder-p": "This area will soon be updated with custom highlights, algorithms solved, structured dataset pipelines, and architectural systems built during the SSAFY 16th Data Track program.",
+        "career-sub": "Experience Archive",
+        "career-title": "Career & Activities",
+        "career-intro": "Explore my professional experience and upcoming activities.",
+        "etri-period": "July 2025 – August 2025",
+        "etri-name": "ETRI",
+        "etri-lab": "Warrior Capability Enhancement Research Laboratory",
+        "etri-detail-title": "ETRI · Warrior Capability Enhancement Research Laboratory",
+        "view-details": "View details",
+        "close-details": "Close details",
+        "hongik-period": "January 2025 – June 2025",
+        "hongik-name": "Hongik University",
+        "hongik-program": "Metaverse Convergence SW Academy · Trainee",
+        "hongik-detail-title": "Hongik University Metaverse Convergence SW Academy",
+        "hongik-role": "Trainee · Deputy Team Lead · 6-person team",
+        "hongik-overview-label": "VR Career Experience Simulator",
+        "hongik-project": "Metaverse-Based VR Content Planning & Development",
+        "hongik-team": "Deputy team lead · 6 developers (4 client, 2 graphics)",
+        "activities": "Key Activities",
+        "hongik-design-title": "Design",
+        "hongik-design-1": "Designed a component-based architecture using flowcharts and UML.",
+        "hongik-design-2": "Designed the user-experience flow through level structure and object placement.",
+        "hongik-lead-title": "Deputy Team Lead",
+        "hongik-lead-1": "Introduced Agile practices, a Notion Kanban board, milestones, and short Scrum meetings to improve visibility and schedule adherence.",
+        "hongik-lead-2": "Reduced meeting time from 30 minutes to 5–10 minutes.",
+        "hongik-lead-3": "Interviewed an overseas industry professional by email and applied the findings to the simulator design.",
+        "hongik-client-title": "Client Development",
+        "hongik-client-1": "Implemented the complete level, from the vocational training zone to the overall experience flow.",
+        "hongik-client-2": "Built an asynchronous sequence that restricts player movement on area entry and restores it when the presentation ends.",
+        "hongik-client-3": "Designed an extensible single-item class that dynamically loads appearances through name-based runtime branching.",
+        "hongik-client-4": "Created a real-time collision visualization debugging tool to prevent placement and collision errors.",
+        "hongik-achievement-1": "Submitted to and exhibited at the 2025 Global Game Challenge (GGC).",
+        "hongik-achievement-2": "Development of unique career exploration educational content using metaverse-based VR — ICONI 2025",
+        "responsibilities": "Key Responsibilities", "achievements": "Key Achievements",
+        "solo": "Solo development · 2 months", "team": "2-person team + external partner · 1 month", "two-months": "2 months",
+        "p1-title": "Motion Capture Data Visualization, Preprocessing & Labeling Software",
+        "p1-r1": "Built folder-wide BVH batch loading and automatic one-to-one mapping to same-named JSON label files.",
+        "p1-r2": "Created a file-list UI that dynamically switches BVH motion data and JSON metadata, replacing the manual single-file workflow.",
+        "p1-r3": "Mapped BVH hierarchies to Unity character bones for real-time retargeting and visualization, with continuous and frame-by-frame playback.",
+        "p1-r4": "Integrated Winterdust for BVH parsing and editing, enabling precise frame-level extraction and removal of unnecessary data.",
+        "p1-r5": "Implemented JSON metadata editing and creation with automatic motion-name and frame-length updates plus editable class and description fields.",
+        "p1-a1": "Separated motion recording and validation into parallel workflows, improving processing speed.",
+        "p1-a2": "Automated repetitive file replacement and loading, reducing time spent on manual operations.",
+        "p2-title": "Scenario-Based VR Simulator Feature Development",
+        "p2-r1": "Applied Queue-based object pooling to reduce runtime allocation costs and added null-reference handling for stability.",
+        "p2-r2": "Built flexible Spline movement paths and randomized route assignment to generate varied movement patterns and improve immersion.",
+        "p3-title": "Motion Capture Dataset Construction", "p3-r1": "Personally wore and operated the motion capture equipment.",
+        "p3-r2": "Captured project-specific movements that could not be replaced by general-purpose datasets such as AMASS.",
+        "p3-a1": "Secured a dataset of more than 30 project-specific motions.",
+        "toast-dark-mode": "Dark mode activated.",
+        "toast-light-mode": "Light mode activated."
+      },
+      ko: {
+        "nav-about": "소개 (About me)",
+        "nav-ssafy": "싸피 김대원 (SSAFY)",
+        "nav-tmi": "TMI 김대원",
+        "ssafy-sub": "SSAFY 16기 데이터 트랙 기록",
+        "ssafy-title": "싸피 여정",
+        "ssafy-placeholder-h": "향후 기록 예정 공간",
+        "ssafy-placeholder-p": "싸피 16기 데이터 트랙 기간 동안 진행하는 다양한 팀 프로젝트, 개발 성과, 알고리즘 트레이닝 및 데이터 아키텍처 인프라 작업 이력들로 정성껏 채워갈 예정입니다.",
+        "career-sub": "활동 아카이브",
+        "career-title": "경력 및 활동",
+        "career-intro": "경력의 상세 내용과 앞으로 추가될 활동을 확인해 보세요.",
+        "etri-period": "2025년 7월 – 2025년 8월",
+        "etri-name": "ETRI",
+        "etri-lab": "워리어능력증강연구실",
+        "etri-detail-title": "ETRI · 워리어능력증강연구실",
+        "view-details": "상세 보기",
+        "close-details": "상세 닫기",
+        "hongik-period": "2025년 1월 – 2025년 6월",
+        "hongik-name": "홍익대학교",
+        "hongik-program": "메타버스 융합 SW 아카데미 · 교육생",
+        "hongik-detail-title": "홍익대학교 메타버스 융합 SW 아카데미",
+        "hongik-role": "교육생 · 부팀장 · 6인 개발",
+        "hongik-overview-label": "VR 직업 체험 시뮬레이터",
+        "hongik-project": "메타버스 기반 VR 콘텐츠 기획 및 제작",
+        "hongik-team": "부팀장 · 6인 개발 (클라이언트 4, 그래픽 2)",
+        "activities": "주요 활동",
+        "hongik-design-title": "설계",
+        "hongik-design-1": "Flowchart와 UML을 활용해 컴포넌트 기반 구조를 설계했습니다.",
+        "hongik-design-2": "공간 구조와 오브젝트 배치를 통해 사용자 경험 흐름을 고려한 레벨 디자인을 설계했습니다.",
+        "hongik-lead-title": "부팀장 역할 수행",
+        "hongik-lead-1": "애자일 기법, Notion 칸반보드, 마일스톤과 스크럼 미팅을 도입해 진행 상황 공유와 일정 준수 체계를 구축했습니다.",
+        "hongik-lead-2": "스크럼 미팅 시간을 30분에서 5~10분으로 단축해 팀 개발 효율을 높였습니다.",
+        "hongik-lead-3": "콘텐츠의 사실성과 전문성을 위해 해외 현직자와 이메일 인터뷰를 진행하고 수집한 정보를 시뮬레이터 설계에 반영했습니다.",
+        "hongik-client-title": "클라이언트 개발",
+        "hongik-client-1": "직업 훈련 구역부터 전체 레벨 구성까지 사용자 흐름 설계를 기반으로 직접 구현했습니다.",
+        "hongik-client-2": "특정 구역 진입 시 이동을 제한하고 연출 종료 시점에 복원하는 비동기 흐름을 구현했습니다.",
+        "hongik-client-3": "단일 아이템 클래스에서 이름 기반 런타임 분기로 종류별 외형을 동적 로드하는 확장 가능한 구조를 설계했습니다.",
+        "hongik-client-4": "충돌 영역을 실시간으로 시각화해 배치 및 충돌 오류를 예방하는 디버그 도구를 구현했습니다.",
+        "hongik-achievement-1": "2025 GGC(Global Game Challenge)에 출품 및 전시했습니다.",
+        "hongik-achievement-2": "Development of unique career exploration educational content using metaverse-based VR — ICONI 2025",
+        "responsibilities": "주요 업무", "achievements": "주요 성과",
+        "solo": "1인 개발 · 2개월", "team": "2인 + 외부 업체 협력 · 1개월", "two-months": "2개월",
+        "p1-title": "모션 캡처 데이터 시각화, 전처리, 라벨링 소프트웨어 개발",
+        "p1-r1": "지정 폴더의 BVH 파일을 일괄 로드하고 동일 명칭의 JSON 라벨링 파일을 1:1로 자동 매핑했습니다.",
+        "p1-r2": "파일 목록 UI에서 선택한 BVH 데이터와 JSON 메타데이터를 동적으로 전환하여 기존 단일 파일 수동 작업을 개선했습니다.",
+        "p1-r3": "BVH 계층을 Unity 캐릭터 본에 매핑해 실시간 리타겟팅·시각화하고 연속 및 1프레임 단위 재생을 구현했습니다.",
+        "p1-r4": "Winterdust를 도입해 BVH 파싱·편집과 프레임 단위 구간 추출 및 불필요 데이터 제거 기능을 구현했습니다.",
+        "p1-r5": "JSON 메타데이터 수정·생성, 모션 이름·프레임 길이 자동 갱신, class·description 입력 기능을 구현했습니다.",
+        "p1-a1": "모션 캡처 녹화와 검증을 병렬 분리하여 업무 처리 속도를 향상했습니다.",
+        "p1-a2": "파일 교체와 불러오기 등 반복 작업을 자동화하여 수작업 시간을 단축했습니다.",
+        "p2-title": "시나리오 기반 VR 시뮬레이터 기능 개발",
+        "p2-r1": "Queue 기반 오브젝트 풀링으로 런타임 메모리 할당 비용을 절감하고 NullReference 예외 처리로 안정성을 확보했습니다.",
+        "p2-r2": "Spline 기반 이동 경로와 무작위 경로 배정 시스템을 구현해 실행마다 다른 이동 패턴과 몰입감을 제공했습니다.",
+        "p3-title": "모션 캡처 데이터셋 구축", "p3-r1": "모션 캡처 장비를 직접 착용하고 운용했습니다.",
+        "p3-r2": "AMASS 등 범용 데이터셋으로 대체할 수 없는 프로젝트 특화 동작을 취득했습니다.",
+        "p3-a1": "30개 이상의 프로젝트 특화 동작 데이터셋을 확보했습니다.",
+        "toast-dark-mode": "다크 모드가 활성화되었습니다.",
+        "toast-light-mode": "라이트 모드가 활성화되었습니다."
+      }
+    };
+
+    let currentLang = localStorage.getItem('daewon-portfolio-lang') || 'en';
+    const btnKo = document.getElementById('btn-ko');
+    const btnEn = document.getElementById('btn-en');
+
+    function changeLanguage(lang) {
+      currentLang = lang;
+      localStorage.setItem('daewon-portfolio-lang', lang);
+      
+      const isKo = lang === 'ko';
+      btnKo.classList.toggle('bg-brand-primary', isKo);
+      btnKo.classList.toggle('text-white', isKo);
+      btnKo.classList.toggle('dark:text-zinc-900', isKo);
+      
+      btnEn.classList.toggle('bg-brand-primary', !isKo);
+      btnEn.classList.toggle('text-white', !isKo);
+      btnEn.classList.toggle('dark:text-zinc-900', !isKo);
+
+      document.documentElement.setAttribute('lang', lang);
+
+      document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          element.innerHTML = translations[lang][key];
+        }
+      });
+    }
+
+    // 테마 설정 (시스템 선호도 및 보존 쿠키 로드)
+    const themeBtn = document.getElementById('theme-btn');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+
+    const applyTheme = (isDark) => {
+      if (isDark) {
+        htmlEl.classList.add('dark');
+        htmlEl.setAttribute('data-theme', 'dark');
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+      } else {
+        htmlEl.classList.remove('dark');
+        htmlEl.setAttribute('data-theme', 'light');
+        themeIcon.innerHTML = `
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        `;
+      }
+    };
+
+    const savedTheme = localStorage.getItem('daewon-portfolio-theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    applyTheme(savedTheme === 'dark' || (!savedTheme && prefersDark));
+
+    themeBtn.addEventListener('click', () => {
+      const currentlyDark = htmlEl.classList.contains('dark');
+      applyTheme(!currentlyDark);
+      localStorage.setItem('daewon-portfolio-theme', !currentlyDark ? 'dark' : 'light');
+      showToast(!currentlyDark ? translations[currentLang]["toast-dark-mode"] : translations[currentLang]["toast-light-mode"]);
+    });
+
+    // 모바일 햄버거 메뉴 드로워 제어
+    const menuToggleBtn = document.getElementById('menu-toggle-btn');
+    const mobileNavDrawer = document.getElementById('mobile-nav-drawer');
+
+    menuToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileNavDrawer.classList.toggle('hidden');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menuToggleBtn.contains(e.target) && !mobileNavDrawer.contains(e.target)) {
+        mobileNavDrawer.classList.add('hidden');
+      }
+    });
+
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toast-msg');
+    let toastTimeout;
+
+    function showToast(message) {
+      toastMsg.textContent = message;
+      toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[120px]');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[120px]');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2500);
+    }
+
+    const etriDetailBtn = document.getElementById('etri-detail-btn');
+    const etriCloseBtn = document.getElementById('etri-close-btn');
+    const etriDetails = document.getElementById('etri-details');
+    const etriDetailIcon = document.getElementById('etri-detail-icon');
+    const hongikDetailBtn = document.getElementById('hongik-detail-btn');
+    const hongikDetails = document.getElementById('hongik-details');
+    const hongikDetailIcon = document.getElementById('hongik-detail-icon');
+
+    function setEtriDetails(open, shouldScroll = false) {
+      if (open) setHongikDetails(false);
+      etriDetails.classList.toggle('hidden', !open);
+      etriDetailBtn.setAttribute('aria-expanded', String(open));
+      etriDetailIcon.classList.toggle('rotate-90', open);
+      const label = etriDetailBtn.querySelector('[data-i18n="view-details"]');
+      label.textContent = open ? translations[currentLang]['close-details'] : translations[currentLang]['view-details'];
+      if (open && shouldScroll) etriDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function toggleEtriDetails() {
+      const willOpen = etriDetails.classList.contains('hidden');
+      setEtriDetails(willOpen, willOpen);
+    }
+
+    function setHongikDetails(open, shouldScroll = false) {
+      if (open) setEtriDetails(false);
+      hongikDetails.classList.toggle('hidden', !open);
+      hongikDetailBtn.setAttribute('aria-expanded', String(open));
+      hongikDetailIcon.classList.toggle('rotate-90', open);
+      const label = hongikDetailBtn.querySelector('[data-i18n="view-details"]');
+      label.textContent = open ? translations[currentLang]['close-details'] : translations[currentLang]['view-details'];
+      if (open && shouldScroll) hongikDetails.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function toggleHongikDetails() {
+      const willOpen = hongikDetails.classList.contains('hidden');
+      setHongikDetails(willOpen, willOpen);
+    }
+
+    window.onload = function () {
+      changeLanguage(currentLang);
+      setEtriDetails(false);
+      setHongikDetails(false);
+    };
+  </script>
+  <script src="tmi-access.js"></script>
+</body>
+</html>
