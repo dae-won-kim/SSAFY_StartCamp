@@ -2,9 +2,10 @@
   const storageKey = 'daewon-tmi-disabled';
   const versionKey = 'daewon-tmi-access-version';
   const stateVersion = '2';
-  const requiredKeys = new Set(['1', '2', '3', '4']);
-  const pressedKeys = new Set();
-  let combinationHandled = false;
+  const accessSequence = '1234';
+  const sequenceTimeout = 2000;
+  let enteredKeys = '';
+  let resetTimer;
 
   if (localStorage.getItem(versionKey) !== stateVersion) {
     localStorage.setItem(storageKey, 'true');
@@ -61,23 +62,25 @@
   }
 
   document.addEventListener('keydown', event => {
-    if (!requiredKeys.has(event.key)) return;
-    pressedKeys.add(event.key);
+    if (event.repeat) return;
 
-    if (!combinationHandled && [...requiredKeys].every(key => pressedKeys.has(key))) {
-      combinationHandled = true;
+    enteredKeys = (enteredKeys + event.key).slice(-accessSequence.length);
+
+    window.clearTimeout(resetTimer);
+    resetTimer = window.setTimeout(() => {
+      enteredKeys = '';
+    }, sequenceTimeout);
+
+    if (enteredKeys === accessSequence) {
+      window.clearTimeout(resetTimer);
+      enteredKeys = '';
       toggleTmiAccess();
     }
   });
 
-  document.addEventListener('keyup', event => {
-    pressedKeys.delete(event.key);
-    if (![...requiredKeys].every(key => pressedKeys.has(key))) combinationHandled = false;
-  });
-
   window.addEventListener('blur', () => {
-    pressedKeys.clear();
-    combinationHandled = false;
+    window.clearTimeout(resetTimer);
+    enteredKeys = '';
   });
 
   updateTmiLinks(isDisabled());
