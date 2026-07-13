@@ -1,7 +1,7 @@
 (() => {
   const storageKey = 'daewon-tmi-disabled';
   const versionKey = 'daewon-tmi-access-version';
-  const stateVersion = '2';
+  const stateVersion = '3';
   const accessSequence = '1234';
   const sequenceTimeout = 2000;
   let enteredKeys = '';
